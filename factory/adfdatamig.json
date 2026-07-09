@@ -1,0 +1,15 @@
+{
+	"name": "adfdatamig",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "59daffad-a833-4d6a-93c7-14b259ec1bd5",
+		"tenantId": "8e1ee04c-3c94-4988-bb94-6bae8a8346b9"
+	}
+}
