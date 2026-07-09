@@ -2,7 +2,7 @@
 	"name": "EVENT_TRG_FILE_MIGRATION",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
@@ -13,9 +13,9 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/defaultformatholder/blobs/",
+			"blobPathBeginsWith": "/defaultformatholder/blobs/ingestion",
 			"blobPathEndsWith": ".done",
-			"ignoreEmptyBlobs": true,
+			"ignoreEmptyBlobs": false,
 			"scope": "/subscriptions/b339d13b-36d8-474e-a62a-077e5e03f94d/resourceGroups/data_migration/providers/Microsoft.Storage/storageAccounts/adlsdatamig",
 			"events": [
 				"Microsoft.Storage.BlobCreated"
