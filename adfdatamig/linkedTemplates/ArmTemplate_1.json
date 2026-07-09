@@ -369,7 +369,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('file_metadata').output.childItems[0]",
+								"value": "@activity('file_metadata').output.childItems",
 								"type": "Expression"
 							},
 							"activities": [
