@@ -75,6 +75,10 @@
 			"type": "string",
 			"defaultValue": "https://adlsdatamig.dfs.core.windows.net/"
 		},
+		"EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b339d13b-36d8-474e-a62a-077e5e03f94d/resourceGroups/data_migration/providers/Microsoft.Storage/storageAccounts/adlsdatamig"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -170,6 +174,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope": {
+						"value": "[parameters('EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope')]"
 					}
 				}
 			},

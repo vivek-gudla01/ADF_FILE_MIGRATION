@@ -6,6 +6,10 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "adfdatamig"
+		},
+		"EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b339d13b-36d8-474e-a62a-077e5e03f94d/resourceGroups/data_migration/providers/Microsoft.Storage/storageAccounts/adlsdatamig"
 		}
 	},
 	"variables": {
@@ -899,6 +903,37 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/txtblobtotxtadls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EVENT_TRG_FILE_MIGRATION')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_file_migration",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/defaultformatholder/blobs/",
+					"blobPathEndsWith": ".done",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_file_migration')]"
 			]
 		},
 		{
