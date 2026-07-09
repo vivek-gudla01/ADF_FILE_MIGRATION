@@ -1421,9 +1421,9 @@
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/defaultformatholder/blobs/",
+					"blobPathBeginsWith": "/defaultformatholder/blobs/ingestion",
 					"blobPathEndsWith": ".done",
-					"ignoreEmptyBlobs": true,
+					"ignoreEmptyBlobs": false,
 					"scope": "[parameters('EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
