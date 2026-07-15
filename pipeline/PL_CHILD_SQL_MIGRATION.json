@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "LKP_CHILD_SQL_MIG",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -13,9 +13,49 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT MAX(@{pipeline().parameters.WatermarkColumn}) AS MaxValue\r\nFROM @{pipeline().parameters.TableSchema}.@{pipeline().parameters.TableName}\r\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "IF_NEW_RECORD_EXISTS",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "LKP_CHILD_SQL_MIG",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": []
 			}
 		],
+		"parameters": {
+			"TableSchema": {
+				"type": "string"
+			},
+			"TableName": {
+				"type": "string"
+			},
+			"WatermarkColumn": {
+				"type": "string"
+			},
+			"LastLoadValue": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
