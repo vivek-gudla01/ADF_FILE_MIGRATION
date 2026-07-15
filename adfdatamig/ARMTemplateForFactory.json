@@ -47,6 +47,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage6'"
 		},
+		"LS_GSRetail_SQL_MIG_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_GSRetail_SQL_MIG'"
+		},
 		"ls_txtblob_to_adls_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_txtblob_to_adls'"
@@ -75,6 +79,18 @@
 			"type": "string",
 			"defaultValue": "https://adlsdatamig.dfs.core.windows.net/"
 		},
+		"LS_GSRetail_SQL_MIG_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "VIVEK-GUDLA01"
+		},
+		"LS_GSRetail_SQL_MIG_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "GSRetail"
+		},
+		"LS_GSRetail_SQL_MIG_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Admin"
+		},
 		"EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b339d13b-36d8-474e-a62a-077e5e03f94d/resourceGroups/data_migration/providers/Microsoft.Storage/storageAccounts/adlsdatamig"
@@ -84,6 +100,55 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/PL_PARENT_SQL_MIG')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "LKP_SQL_WATERMARK",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "SELECT TableSchema, TableName, WatermarkColumn, LastLoadValue FROM dbo.ADF_Watermark_Table;",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SqlServerTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerTable1')]"
+			]
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/PL_file_migration')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -1159,6 +1224,24 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_GSRetail_SQL_MIG",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_GSRetail_SQL_MIG')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/blobtoadlsparquet')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1395,6 +1478,34 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LS_GSRetail_SQL_MIG')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('LS_GSRetail_SQL_MIG_properties_typeProperties_server')]",
+					"database": "[parameters('LS_GSRetail_SQL_MIG_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": true,
+					"authenticationType": "SQL",
+					"userName": "[parameters('LS_GSRetail_SQL_MIG_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LS_GSRetail_SQL_MIG_password')]"
+					}
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime1",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ls_txtblob_to_adls')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1460,8 +1571,7 @@
 						"frequency": "Day",
 						"interval": 15,
 						"startTime": "2026-07-09T17:04:00",
-						"timeZone": "India Standard Time",
-						"schedule": {}
+						"timeZone": "India Standard Time"
 					}
 				}
 			},

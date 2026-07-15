@@ -47,6 +47,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage6'"
 		},
+		"LS_GSRetail_SQL_MIG_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_GSRetail_SQL_MIG'"
+		},
 		"ls_txtblob_to_adls_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_txtblob_to_adls'"
@@ -74,6 +78,18 @@
 		"AzureDataLakeStorage6_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsdatamig.dfs.core.windows.net/"
+		},
+		"LS_GSRetail_SQL_MIG_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "VIVEK-GUDLA01"
+		},
+		"LS_GSRetail_SQL_MIG_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "GSRetail"
+		},
+		"LS_GSRetail_SQL_MIG_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Admin"
 		},
 		"EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope": {
 			"type": "string",
@@ -174,6 +190,18 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"LS_GSRetail_SQL_MIG_password": {
+						"value": "[parameters('LS_GSRetail_SQL_MIG_password')]"
+					},
+					"LS_GSRetail_SQL_MIG_properties_typeProperties_server": {
+						"value": "[parameters('LS_GSRetail_SQL_MIG_properties_typeProperties_server')]"
+					},
+					"LS_GSRetail_SQL_MIG_properties_typeProperties_database": {
+						"value": "[parameters('LS_GSRetail_SQL_MIG_properties_typeProperties_database')]"
+					},
+					"LS_GSRetail_SQL_MIG_properties_typeProperties_userName": {
+						"value": "[parameters('LS_GSRetail_SQL_MIG_properties_typeProperties_userName')]"
 					},
 					"EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope": {
 						"value": "[parameters('EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope')]"
