@@ -17,12 +17,11 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT MAX(@{pipeline().parameters.WatermarkColumn}) AS MaxValue\r\nFROM @{pipeline().parameters.TableSchema}.@{pipeline().parameters.TableName}\r\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "SqlServerTable1",
+						"referenceName": "SQL_CONN_MAX_VALUE",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false

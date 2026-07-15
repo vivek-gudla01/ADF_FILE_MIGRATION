@@ -1,0 +1,30 @@
+{
+	"name": "SQL_CONN_MAX_VALUE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_MIG_MAX_VALUE",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"schename": {
+				"type": "string"
+			},
+			"tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().schename",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
