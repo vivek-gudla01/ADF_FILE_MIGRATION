@@ -1,0 +1,21 @@
+{
+	"name": "LS_GSRetail_SQL_MIG",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "VIVEK-GUDLA01",
+			"database": "GSRetail",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "SQL",
+			"userName": "Admin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiZDg5ODliYi00NjBjLTQ3MDEtOGZkOS1mZjEwNTg0NDA4ZjciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
