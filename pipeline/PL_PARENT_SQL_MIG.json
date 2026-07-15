@@ -28,7 +28,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "ForEach_SQL_Watermark_ADF",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -38,7 +38,13 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LKP_SQL_WATERMARK').output.value",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
