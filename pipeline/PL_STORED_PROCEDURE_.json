@@ -1,0 +1,39 @@
+{
+	"name": "PL_STORED_PROCEDURE_",
+	"properties": {
+		"activities": [
+			{
+				"name": "SP_update_watermark",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[UpdateWatermark]",
+					"storedProcedureParameters": {
+						"TableName": {
+							"value": ""
+						},
+						"TableSchema": {
+							"value": ""
+						},
+						"WatermarkColumn": {
+							"value": ""
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_SQL_DATA_EXTRACTION_FOR_GSRetail",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
