@@ -211,7 +211,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"expression": {
-								"value": "@or(equals(pipeline().parameters.LastLoadValue, null), greater(int(activity('LKP_CHILD_SQL_MIG').output.firstRow.CustomerKey), int(pipeline().parameters.LastLoadValue)))",
+								"value": "@or(equals(pipeline().parameters.LastLoadValue, null), greater(int(activity('LKP_CHILD_SQL_MIG').output[0].CustomerKey), int(pipeline().parameters.LastLoadValue)))",
 								"type": "Expression"
 							},
 							"ifTrueActivities": [
