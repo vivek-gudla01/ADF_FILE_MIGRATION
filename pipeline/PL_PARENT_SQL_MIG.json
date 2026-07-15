@@ -24,7 +24,8 @@
 					"dataset": {
 						"referenceName": "SqlServerTable1",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -43,7 +44,25 @@
 					"items": {
 						"value": "@activity('LKP_SQL_WATERMARK').output.value",
 						"type": "Expression"
-					}
+					},
+					"activities": [
+						{
+							"name": "Execute_CHILD_SQL_MIG",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "PL_CHILD_SQL_MIGRATION",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					]
 				}
 			}
 		],
