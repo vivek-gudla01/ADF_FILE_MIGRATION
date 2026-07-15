@@ -47,9 +47,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage6'"
 		},
+		"AzureDataLakeStorage7_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage7'"
+		},
 		"LS_GSRetail_SQL_MIG_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_GSRetail_SQL_MIG'"
+		},
+		"LS_SQL_DATA_EXTRACTION_FOR_GSRetail_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_DATA_EXTRACTION_FOR_GSRetail'"
+		},
+		"LS_SQL_MIG_MAX_LOAD_VALUE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_MIG_MAX_LOAD_VALUE'"
+		},
+		"LS_SQL_MIG_MAX_VALUE_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_MIG_MAX_VALUE'"
 		},
 		"ls_txtblob_to_adls_connectionString": {
 			"type": "secureString",
@@ -79,6 +95,10 @@
 			"type": "string",
 			"defaultValue": "https://adlsdatamig.dfs.core.windows.net/"
 		},
+		"AzureDataLakeStorage7_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsdatamig.dfs.core.windows.net/"
+		},
 		"LS_GSRetail_SQL_MIG_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "VIVEK-GUDLA01"
@@ -88,6 +108,42 @@
 			"defaultValue": "GSRetail"
 		},
 		"LS_GSRetail_SQL_MIG_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Admin"
+		},
+		"LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "VIVEK-GUDLA01"
+		},
+		"LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "GSRetail"
+		},
+		"LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Admin"
+		},
+		"LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "VIVEK-GUDLA01"
+		},
+		"LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "GSRetail"
+		},
+		"LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Admin"
+		},
+		"LS_SQL_MIG_MAX_VALUE_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "VIVEK-GUDLA01"
+		},
+		"LS_SQL_MIG_MAX_VALUE_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "GSRetail"
+		},
+		"LS_SQL_MIG_MAX_VALUE_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "Admin"
 		},
@@ -152,6 +208,9 @@
 					"AzureDataLakeStorage6_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage6_accountKey')]"
 					},
+					"AzureDataLakeStorage7_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage7_accountKey')]"
+					},
 					"ls_txtblob_to_adls_connectionString": {
 						"value": "[parameters('ls_txtblob_to_adls_connectionString')]"
 					},
@@ -172,6 +231,9 @@
 					},
 					"AzureDataLakeStorage6_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage6_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage7_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage7_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -194,6 +256,15 @@
 					"LS_GSRetail_SQL_MIG_password": {
 						"value": "[parameters('LS_GSRetail_SQL_MIG_password')]"
 					},
+					"LS_SQL_DATA_EXTRACTION_FOR_GSRetail_password": {
+						"value": "[parameters('LS_SQL_DATA_EXTRACTION_FOR_GSRetail_password')]"
+					},
+					"LS_SQL_MIG_MAX_LOAD_VALUE_password": {
+						"value": "[parameters('LS_SQL_MIG_MAX_LOAD_VALUE_password')]"
+					},
+					"LS_SQL_MIG_MAX_VALUE_password": {
+						"value": "[parameters('LS_SQL_MIG_MAX_VALUE_password')]"
+					},
 					"LS_GSRetail_SQL_MIG_properties_typeProperties_server": {
 						"value": "[parameters('LS_GSRetail_SQL_MIG_properties_typeProperties_server')]"
 					},
@@ -203,13 +274,60 @@
 					"LS_GSRetail_SQL_MIG_properties_typeProperties_userName": {
 						"value": "[parameters('LS_GSRetail_SQL_MIG_properties_typeProperties_userName')]"
 					},
+					"LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_server')]"
+					},
+					"LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_database')]"
+					},
+					"LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_DATA_EXTRACTION_FOR_GSRetail_properties_typeProperties_userName')]"
+					},
+					"LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_server')]"
+					},
+					"LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_database')]"
+					},
+					"LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_MIG_MAX_LOAD_VALUE_properties_typeProperties_userName')]"
+					},
+					"LS_SQL_MIG_MAX_VALUE_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_MIG_MAX_VALUE_properties_typeProperties_server')]"
+					},
+					"LS_SQL_MIG_MAX_VALUE_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_MIG_MAX_VALUE_properties_typeProperties_database')]"
+					},
+					"LS_SQL_MIG_MAX_VALUE_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_MIG_MAX_VALUE_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdatamig_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adfdatamig_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
 					"EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope": {
 						"value": "[parameters('EVENT_TRG_FILE_MIGRATION_properties_typeProperties_scope')]"
 					}
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'adfdatamig_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'adfdatamig_ArmTemplate_1')]"
 			]
 		}
 	]
