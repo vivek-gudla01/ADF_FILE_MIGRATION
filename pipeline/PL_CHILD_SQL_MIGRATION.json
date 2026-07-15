@@ -22,7 +22,17 @@
 					},
 					"dataset": {
 						"referenceName": "SQL_CONN_MAX_VALUE",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"schename": {
+								"value": "@pipeline().parameters.TableSchema",
+								"type": "Expression"
+							},
+							"tablename": {
+								"value": "@pipeline().parameters.TableName",
+								"type": "Expression"
+							}
+						}
 					},
 					"firstRowOnly": false
 				}
