@@ -194,7 +194,7 @@
 									}
 								}
 							},
-							"firstRowOnly": false
+							"firstRowOnly": true
 						}
 					},
 					{
@@ -402,6 +402,7 @@
 								"value": "@activity('LKP_SQL_WATERMARK').output.value",
 								"type": "Expression"
 							},
+							"isSequential": false,
 							"activities": [
 								{
 									"name": "Execute_CHILD_SQL_MIG",
